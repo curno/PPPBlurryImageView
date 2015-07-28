@@ -14,6 +14,10 @@
 		A2823DA21B5F3F9500294777 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A2823DA11B5F3F9500294777 /* Images.xcassets */; };
 		A2823DA51B5F3F9500294777 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = A2823DA31B5F3F9500294777 /* LaunchScreen.xib */; };
 		A2823DB11B5F3F9500294777 /* PPPBlurryImageViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A2823DB01B5F3F9500294777 /* PPPBlurryImageViewTests.m */; };
+		A2823DC11B5F409800294777 /* PPPBlurryImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = A2823DC01B5F409800294777 /* PPPBlurryImageView.m */; };
+		A2823DC31B5F40B800294777 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2823DC21B5F40B800294777 /* GLKit.framework */; };
+		A2823DC51B5F40DC00294777 /* Trival.vert in Resources */ = {isa = PBXBuildFile; fileRef = A2823DC41B5F40DC00294777 /* Trival.vert */; };
+		A2823DC71B5F40EB00294777 /* Gaussian.frag in Resources */ = {isa = PBXBuildFile; fileRef = A2823DC61B5F40EB00294777 /* Gaussian.frag */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +44,11 @@
 		A2823DAA1B5F3F9500294777 /* PPPBlurryImageViewTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PPPBlurryImageViewTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A2823DAF1B5F3F9500294777 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A2823DB01B5F3F9500294777 /* PPPBlurryImageViewTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PPPBlurryImageViewTests.m; sourceTree = "<group>"; };
+		A2823DBF1B5F409800294777 /* PPPBlurryImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPPBlurryImageView.h; sourceTree = "<group>"; };
+		A2823DC01B5F409800294777 /* PPPBlurryImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPPBlurryImageView.m; sourceTree = "<group>"; };
+		A2823DC21B5F40B800294777 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
+		A2823DC41B5F40DC00294777 /* Trival.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Trival.vert; sourceTree = "<group>"; };
+		A2823DC61B5F40EB00294777 /* Gaussian.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Gaussian.frag; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +56,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A2823DC31B5F40B800294777 /* GLKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,6 +73,7 @@
 		A2823D881B5F3F9500294777 = {
 			isa = PBXGroup;
 			children = (
+				A2823DC21B5F40B800294777 /* GLKit.framework */,
 				A2823D931B5F3F9500294777 /* PPPBlurryImageView */,
 				A2823DAD1B5F3F9500294777 /* PPPBlurryImageViewTests */,
 				A2823D921B5F3F9500294777 /* Products */,
@@ -81,6 +92,7 @@
 		A2823D931B5F3F9500294777 /* PPPBlurryImageView */ = {
 			isa = PBXGroup;
 			children = (
+				A2823DBE1B5F408A00294777 /* PPPBlurryImageView */,
 				A2823D981B5F3F9500294777 /* AppDelegate.h */,
 				A2823D991B5F3F9500294777 /* AppDelegate.m */,
 				A2823D9B1B5F3F9500294777 /* ViewController.h */,
@@ -117,6 +129,17 @@
 				A2823DAF1B5F3F9500294777 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		A2823DBE1B5F408A00294777 /* PPPBlurryImageView */ = {
+			isa = PBXGroup;
+			children = (
+				A2823DBF1B5F409800294777 /* PPPBlurryImageView.h */,
+				A2823DC01B5F409800294777 /* PPPBlurryImageView.m */,
+				A2823DC41B5F40DC00294777 /* Trival.vert */,
+				A2823DC61B5F40EB00294777 /* Gaussian.frag */,
+			);
+			path = PPPBlurryImageView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -198,9 +221,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A2823DC51B5F40DC00294777 /* Trival.vert in Resources */,
 				A2823DA01B5F3F9500294777 /* Main.storyboard in Resources */,
 				A2823DA51B5F3F9500294777 /* LaunchScreen.xib in Resources */,
 				A2823DA21B5F3F9500294777 /* Images.xcassets in Resources */,
+				A2823DC71B5F40EB00294777 /* Gaussian.frag in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -219,6 +244,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A2823D9D1B5F3F9500294777 /* ViewController.m in Sources */,
+				A2823DC11B5F409800294777 /* PPPBlurryImageView.m in Sources */,
 				A2823D9A1B5F3F9500294777 /* AppDelegate.m in Sources */,
 				A2823D971B5F3F9500294777 /* main.m in Sources */,
 			);
@@ -298,7 +324,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -335,7 +361,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -415,6 +441,7 @@
 				A2823DB61B5F3F9500294777 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A2823DB71B5F3F9500294777 /* Build configuration list for PBXNativeTarget "PPPBlurryImageViewTests" */ = {
 			isa = XCConfigurationList;
@@ -423,6 +450,7 @@
 				A2823DB91B5F3F9500294777 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
