@@ -56,7 +56,8 @@
     [self createShader];
     [self createFrameBuffers];
     [EAGLContext setCurrentContext:nil];
-    self.beginTextureLevel = 7;
+    self.beginTextureLevel = 8;
+    self.textureLevelDecrease = 0.0;
     
     self.enableSetNeedsDisplay = YES;
 }
@@ -117,12 +118,14 @@
 }
 
 - (void)recreateTextureObjects {
+    GLsizei size = pow(2, self.beginTextureLevel) * (1.0f -  self.blur * self.textureLevelDecrease);
+    self.currentTextureSize = size;
     for (int i = 0; i < 2; ++i) {
         glBindTexture(GL_TEXTURE_2D, _tos[i]);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, self.currentTextureSize, self.currentTextureSize, 0, GL_RGBA,
+        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, size, size, 0, GL_RGBA,
                      GL_UNSIGNED_BYTE, NULL);
         
         glBindFramebuffer(GL_FRAMEBUFFER, _fbos[i]);
@@ -145,10 +148,7 @@
     _image = image;
     
     [EAGLContext setCurrentContext:self.context];
-    
-    //_texture = [self loadTexture:image];
     [self createImageTexure];
-    
     [EAGLContext setCurrentContext:nil];
     
     [self setNeedsDisplay];
@@ -160,7 +160,9 @@
     }
     
     _beginTextureLevel = beginTextureLevel;
-    self.currentTextureSize = pow(2, _beginTextureLevel);
+    [EAGLContext setCurrentContext:self.context];
+    [self recreateTextureObjects];
+    [EAGLContext setCurrentContext:nil];
     [self setNeedsDisplay];
 }
 
@@ -208,8 +210,7 @@
 }
 
 - (GLsizei)textureSize:(GLsizei)size {
-    CGFloat logOf2 = ceil(log2(size));
-    return pow(2, logOf2);
+    return size;
 }
 
 - (void)setBlur:(CGFloat)blur {
@@ -217,6 +218,10 @@
         return;
     }
     _blur = blur;
+    
+    [EAGLContext setCurrentContext:self.context];
+    [self recreateTextureObjects];
+    [EAGLContext setCurrentContext:nil];
     [self setNeedsDisplay];
 }
 
@@ -226,24 +231,15 @@
     }
     
     _textureLevelDecrease = textureLevelDecrease;
-    [self setNeedsDisplay];
-}
-
-- (GLuint)currentProgram {
-    return _program;
-}
-
-- (void)setCurrentTextureSize:(GLsizei)currentTextureSize {
-    if (_currentTextureSize == currentTextureSize) {
-        return;
-    }
-    _currentTextureSize = currentTextureSize;
     [EAGLContext setCurrentContext:self.context];
     [self recreateTextureObjects];
     [EAGLContext setCurrentContext:nil];
     [self setNeedsDisplay];
 }
 
+- (GLuint)currentProgram {
+    return _program;
+}
 
 - (void)drawRect:(CGRect)rect {
     [super drawRect:rect];
