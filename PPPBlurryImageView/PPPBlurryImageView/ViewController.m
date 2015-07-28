@@ -27,6 +27,8 @@
     
     self.imageView.image = [UIImage imageNamed:@"1"];
     self.imageView.blur = 0;
+    self.imageView.beginTextureLevel = 9;
+    self.imageView.textureLevelDecrease = 0.0;
     //[self.imageView setEnableSetNeedsDisplay:NO];
     
     self.displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(tick:)];
@@ -48,9 +50,14 @@
 - (IBAction)touh:(id)sender {
     NSLog(@"touch");
 }
+- (IBAction)imageChanged:(id)sender {
+    UISlider *slider = sender;
+    int index = slider.value / 0.25;
+    
+    self.imageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"%d", index + 1]];
+}
 - (IBAction)changed:(id)sender {
     self.imageView.blur = self.slider.value * 20.0f;
-    
 }
 
 @end
